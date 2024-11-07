@@ -1,0 +1,4 @@
+Here I list the edits that I make to the tutorial after writing the full Jupyter notebook to markdown
+- remove title 
+- remove code blocks annotated to not include in final post
+- add a table of contents
