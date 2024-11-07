@@ -2,3 +2,6 @@ Here I list the edits that I make to the tutorial after writing the full Jupyter
 - remove title 
 - remove code blocks annotated to not include in final post
 - add a table of contents
+- push repo changes to Github (at least the images folder). Then change all png links from local 
+paths to links to the images on Github. The links must be to the image opened in it's own tab. 
+Something like "https://raw.githubusercontent.com/..."

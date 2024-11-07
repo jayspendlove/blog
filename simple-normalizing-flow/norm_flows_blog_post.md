@@ -39,7 +39,7 @@ for more details about the transformation of random variables.
 
 ## Tutorial
 
-This tutorial will demonstrate the use of the `normflows` Python package (see the `normalizing-flows` [Github repository](https://github.com/VincentStimper/normalizing-flows)) for a simple example using a normalizing flow to approximate an unknown target distribution. For this example, the 2D target distribution $p(a,b)$ will consist of a random variable $a$ sampled from a uniform distribution, and another random variable $b$ sampled from a Normal distribution with mean and variance $a$. 
+This tutorial will demonstrate the use of the `normflows` Python package (see the `normalizing-flows` [Github repository](https://github.com/VincentStimper/normalizing-flows)) for a simple example using a normalizing flow to approximate an unknown target distribution. An IPython notebook containing the full code in this tutorial can be found [here](https://github.com/jayspendlove/blog/tree/main/simple-normalizing-flow). For this example, the 2D target distribution $p(a,b)$ will consist of a random variable $a$ sampled from a uniform distribution, and another random variable $b$ sampled from a Normal distribution with mean and variance $a$. 
 
 $$ a \sim \text{Uniform}\left[1,2\right] $$
 $$ b \sim \text{Normal}\left(\mu=a, \sigma^2=a\right). $$
@@ -67,9 +67,8 @@ sampled_a_vals = np.random.uniform(1, 2, N) # Uniform distribution
 sampled_b_vals = np.random.normal(sampled_a_vals, np.sqrt(sampled_a_vals)) # Normal distribution with mean a and variance a
 ```
     
-![png](norm_flows_blog_post_files/norm_flows_blog_post_6_0.png)
-    
-
+<!-- ![png](norm_flows_blog_post_files/norm_flows_blog_post_6_0.png) -->
+![png](https://raw.githubusercontent.com/jayspendlove/blog/refs/heads/main/simple-normalizing-flow/norm_flows_blog_post_files/norm_flows_blog_post_6_0.png)
 
 We see that as expected, both the mean and the standard deviation of the $b$ distribution increase with increasing $a$. Note that the sampled points appear to have the highest density for low $a$. We can see the same thing by calculating the expected probability distribution $p\left(a,b\right)$ analytically, using the law of total probability.
 
@@ -99,8 +98,8 @@ def p_a_b(ab):
     return p_a(a) * p_b_given_a(b, a)
 ```
 
-![png](norm_flows_blog_post_files/norm_flows_blog_post_10_0.png)
-    
+<!-- ![png](norm_flows_blog_post_files/norm_flows_blog_post_10_0.png) -->
+![png](https://raw.githubusercontent.com/jayspendlove/blog/refs/heads/main/simple-normalizing-flow/norm_flows_blog_post_files/norm_flows_blog_post_10_0.png)
 
 
 In addition to visualizing the full 2D distribution, we can look at just the $a$ and $b$ target distributions by marginalizing out the other variable. Because $a$ does not depend on $b$, the marginalized distribution for $a$ is just the $p\left(a\right) \sim \text{Uniform}\left[1,2\right]$. The marginal $b$ distribution, however, is more challenging to obtain because it depends on $a$ in a non-trivial way. If you think about it, as $a$ increases from $1$ to $2$, the distribution for $b$ will drift and spread out, meaning that the total marginal distribution of $b$ is a combination of all these different Normal distributions for different values of $a$. The marginal distribution $p\left(b\right)$ can be calculated by
@@ -111,8 +110,8 @@ $$
 
 This integral is challenging to solve analytically, but can be calculated straightforwardly via numerical integration. Below is shown the marginal distributions for $a$ and $b$.
     
-![png](norm_flows_blog_post_files/norm_flows_blog_post_13_0.png)
-    
+<!-- ![png](norm_flows_blog_post_files/norm_flows_blog_post_13_0.png) -->
+![png](https://raw.githubusercontent.com/jayspendlove/blog/refs/heads/main/simple-normalizing-flow/norm_flows_blog_post_files/norm_flows_blog_post_13_0.png)
 
 
 ## Setting up the normalizing flow
@@ -161,7 +160,8 @@ for it in range(epochs):
 Following training, we can see that in a small number of iterations the normalizing flow learned distribution was able to effectively capture the primary features of the target distribution. The error plot on the right shows where the true and learned distributions disagree.
 
     
-![png](norm_flows_blog_post_files/norm_flows_blog_post_21_0.png)
+<!-- ![png](norm_flows_blog_post_files/norm_flows_blog_post_21_0.png) -->
+![png](https://raw.githubusercontent.com/jayspendlove/blog/refs/heads/main/simple-normalizing-flow/norm_flows_blog_post_files/norm_flows_blog_post_21_0.png)
     
 
 
@@ -181,28 +181,30 @@ plt.show()
 
 
     
-![png](norm_flows_blog_post_files/norm_flows_blog_post_23_0.png)
-    
+<!-- ![png](norm_flows_blog_post_files/norm_flows_blog_post_23_0.png) -->
+![png](https://raw.githubusercontent.com/jayspendlove/blog/refs/heads/main/simple-normalizing-flow/norm_flows_blog_post_files/norm_flows_blog_post_23_0.png)
 
 
 By looking at probability densities at intermediate epochs, we can see that the approximate normalizing flow solution achieves reasonable accuracy early in training.
 
     
-![png](norm_flows_blog_post_files/norm_flows_blog_post_25_0.png)
-    
+<!-- ![png](norm_flows_blog_post_files/norm_flows_blog_post_25_0.png) -->
+![png](https://raw.githubusercontent.com/jayspendlove/blog/refs/heads/main/simple-normalizing-flow/norm_flows_blog_post_files/norm_flows_blog_post_25_0.png)
 
 
 From the loss function, we see that the largest changes happen at the very beginning of training. In the subplots below, by looking at some of the first few epochs we can see the probability density migrating from the original Gaussian centered at $(0,0)$ towards the region with the target density.
     
-![png](norm_flows_blog_post_files/norm_flows_blog_post_27_0.png)
+<!-- ![png](norm_flows_blog_post_files/norm_flows_blog_post_27_0.png) -->
+![png](https://raw.githubusercontent.com/jayspendlove/blog/refs/heads/main/simple-normalizing-flow/norm_flows_blog_post_files/norm_flows_blog_post_27_0.png)
     
 
 
 As another perspective of the normalizing flow solution, we can look at the marginalized probability densities for $a$ and $b$ and compare the true and approximate solutions, in red and black respectively.
 
     
-![png](norm_flows_blog_post_files/norm_flows_blog_post_29_0.png)
-    
+<!-- ![png](norm_flows_blog_post_files/norm_flows_blog_post_29_0.png) -->
+![png](https://raw.githubusercontent.com/jayspendlove/blog/refs/heads/main/simple-normalizing-flow/norm_flows_blog_post_files/norm_flows_blog_post_29_0.png)
+
 
 
 ## Sampling from the trained normalizing flow
@@ -216,7 +218,8 @@ samples, log_prob = model.sample(num_samples=1000) #Sample from normalizing flow
 ```
 
     
-![png](norm_flows_blog_post_files/norm_flows_blog_post_32_0.png)
+<!-- ![png](norm_flows_blog_post_files/norm_flows_blog_post_32_0.png) -->
+![png](https://raw.githubusercontent.com/jayspendlove/blog/refs/heads/main/simple-normalizing-flow/norm_flows_blog_post_files/norm_flows_blog_post_32_0.png)
     
 
 
